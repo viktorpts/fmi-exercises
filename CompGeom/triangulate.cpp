@@ -89,8 +89,10 @@ void triangulate(vector<vec2d<>> polygon)
     int node = selectExtremeNode(polygon);
 
     // Construct triangle, taking into account cyclic selection
-    int next = node == size ? 0 : node + 1;
-    int prev = node == 0 ? size : node - 1;
+    int next = node == size - 1 ? 0 : node + 1;
+    int prev = node == 0 ? size - 1 : node - 1;
+
+    // TODO Check if triangle is internal to the polygon
 
     // Check reaining points for falling inside triangle [node, node+1, node-1]
     vector<vec2d<>> insidePoints;
@@ -125,7 +127,7 @@ void triangulate(vector<vec2d<>> polygon)
         }
     }
 
-    // Else, split polygon along the line [node, furthest node from [node+1, node-1]] and repeat for each half
+    // TODO Else, split polygon along the line [node, furthest node from [node+1, node-1]] and repeat for each half
 }
 
 int main(int argc, char *argv[])
